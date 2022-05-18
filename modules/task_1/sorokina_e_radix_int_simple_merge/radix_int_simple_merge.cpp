@@ -7,7 +7,7 @@
 #include <iostream>
 #include <random>
 
-INT_VEC getRandomVec(int n) {
+INT_VEC getRandomVec(int n) { // Random Vec
   std::random_device dev;
   static std::mt19937 gen(dev());
 
