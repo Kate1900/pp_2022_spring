@@ -7,7 +7,7 @@
 
 #include "../../../3rdparty/unapproved/unapproved.h"
 
-INT_VEC getRandomVec(int n) { // Random Vec
+INT_VEC getRandomVec(int n) {  // Random Vec
   std::random_device dev;
   static std::mt19937 gen(dev());
 
@@ -26,7 +26,7 @@ void radixSort(INT_VEC* vec, bool parallel = true) {
   int largestNum = *std::max_element((*vec).begin(), (*vec).end());
 
   while (largestNum / digitPlace > 0) {
-    int count[10] = { 0 };
+    int count[10] = {0};
 
     for (i = 0; i < n; i++) {
       count[((*vec)[i] / digitPlace) % 10]++;
@@ -70,7 +70,8 @@ INT_VEC mergeVecs(const INT_VEC& arr1, const INT_VEC& arr2) {
   return arr3;
 }
 
-void radixSortSimpleMerge(INT_VEC* vec, int parts, bool parallel, bool parallel_merge) {
+void radixSortSimpleMerge(INT_VEC* vec, int parts, bool parallel,
+                          bool parallel_merge) {
   std::vector<INT_VEC> vecs(parts);
   int grainsize = static_cast<int>((*vec).size()) / parts;
 
@@ -90,9 +91,7 @@ void radixSortSimpleMerge(INT_VEC* vec, int parts, bool parallel, bool parallel_
   if (parallel) {
     std::vector<std::thread> threads;
     for (int i = 0; i < parts; i++) {
-      threads.push_back(std::thread([&vecs, i]() {
-        radixSort(&(vecs[i]));
-        }));
+      threads.push_back(std::thread([&vecs, i]() { radixSort(&(vecs[i])); }));
     }
     for (auto&& thread : threads) {
       thread.join();
@@ -112,7 +111,7 @@ void radixSortSimpleMerge(INT_VEC* vec, int parts, bool parallel, bool parallel_
       for (int i = 0; i < static_cast<int>(vecs.size()) / 2 * 2; i += 2) {
         threads.push_back(std::thread([&vecs_merge, &vecs, i]() {
           vecs_merge[i / 2] = mergeVecs(vecs[i], vecs[i + 1]);
-          }));
+        }));
       }
       for (auto&& thread : threads) {
         thread.join();
