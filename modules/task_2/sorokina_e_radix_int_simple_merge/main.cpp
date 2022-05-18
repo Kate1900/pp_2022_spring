@@ -57,8 +57,8 @@ TEST(RADIX_INT_SIMPLE_MERGE_OMP, TEST_4) {
 }
 
 TEST(RADIX_INT_SIMPLE_MERGE_OMP, TEST_PARALLEL_SORT_SEQ_MERGE) {
-  int runs = 4;
-  int n = 1000;
+  int runs = 1;
+  int n = 50;
   int parts = omp_get_max_threads();
   for (int i = 0; i < runs; i++) {
     std::cout << "n: " << n << "\n";
@@ -73,8 +73,8 @@ TEST(RADIX_INT_SIMPLE_MERGE_OMP, TEST_PARALLEL_SORT_SEQ_MERGE) {
 }
 
 TEST(RADIX_INT_SIMPLE_MERGE_OMP, TEST_PARALLEL_SORT_PARALLEL_MERGE) {
-  int runs = 4;
-  int n = 1000;
+  int runs = 1;
+  int n = 50;
   int parts = omp_get_max_threads();
   for (int i = 0; i < runs; i++) {
     std::cout << "n: " << n << "\n";
